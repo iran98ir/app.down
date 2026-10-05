@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kardar — دانلود</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+
+  body {
+    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fef6e4;
+    color: #111111;
+    min-height:100dvh;
+    padding: 24px 18px 30px;
+    position: relative;
+    overflow-x:hidden;
+    overscroll-behavior-y: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* پس‌زمینه ساده با نقطه‌های تیره */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: radial-gradient(#111 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position:relative; z-index:1;
+    width:100%; max-width: 500px;
+    margin: 0 auto;
+    animation: pop 0.5s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  @keyframes pop {
+    from { opacity:0; transform: scale(0.96); }
+    to   { opacity:1; transform: scale(1); }
+  }
+
+  /* ============ بلوک‌های اصلی ============ */
+  .block {
+    background: #ffffff;
+    border: 3px solid #111111;
+    border-radius: 0;
+    box-shadow: 6px 6px 0 #111111;
+    margin-bottom: 20px;
+    padding: 22px;
+  }
+
+  /* ============ هدر اپ ============ */
+  .app-header {
+    display: flex; align-items: center; gap: 18px;
+    background: #ffde00;
+  }
+  .app-header .icon-frame {
+    flex-shrink: 0;
+    width: 84px; height: 84px;
+    border: 3px solid #111111;
+    background: #fff;
+    box-shadow: 4px 4px 0 #111;
+    overflow: hidden;
+  }
+  .app-header .icon-frame img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .app-header .title-block h1 {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    color: #111;
+  }
+  .app-header .title-block .sub {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ============ امتیاز ============ */
+  .rating-block {
+    background: #ff90e8;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 22px;
+  }
+  .rating-block .label {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+  }
+  .rating-block .stars {
+    display: flex; gap: 3px;
+    direction: ltr;
+  }
+  .rating-block .stars span {
+    font-size: 28px;
+    line-height: 1;
+    color: #111;
+  }
+  .rating-block .stars span.on {
+    color: #111;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+  }
+  .rating-block .stars span.off {
+    color: #111;
+    opacity: 0.25;
+  }
+
+  /* ============ اطلاعات ============ */
+  .info-block {
+    display: flex; gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .info-block .cell {
+    flex: 1;
+    padding: 16px 10px;
+    text-align: center;
+    border-left: 3px solid #111;
+  }
+  .info-block .cell:last-child { border-left: 0; }
+  .info-block .cell .k {
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111;
+    opacity: 0.55;
+    margin-bottom: 5px;
+  }
+  .info-block .cell .v {
+    font-size: 18px;
+    font-weight: 900;
+    color: #111;
+    letter-spacing: -0.5px;
+  }
+
+  /* ============ دکمه دانلود ============ */
+  .cta-block {
+    padding: 0;
+    background: #111111;
+    border: 3px solid #111;
+    box-shadow: 6px 6px 0 #ffde00;
+  }
+  .cta-block a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 24px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 80ms ease, box-shadow 80ms ease;
+  }
+  .cta-block a:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0 #ffde00;
+  }
+  .cta-block a:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 #ffde00;
+  }
+  .cta-block .cta-text {
+    display: flex; flex-direction: column;
+    text-align: right;
+  }
+  .cta-block .cta-text strong {
+    font-size: 20px; font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 2px;
+  }
+  .cta-block .cta-text span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffde00;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cta-block .cta-ic {
+    width: 44px; height: 44px;
+    background: #ffde00;
+    border: 3px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cta-block .cta-ic svg {
+    width: 20px; height: 20px;
+    stroke: #111;
+  }
+
+  /* ============ امنیت ============ */
+  .security-block {
+    background: #e0f7fa;
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 20px;
+  }
+  .security-block .shield {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: #111;
+    border: 3px solid #111;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .security-block .shield svg {
+    width: 18px; height: 18px;
+    stroke: #e0f7fa;
+  }
+  .security-block p {
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #111;
+  }
+  .security-block p b {
+    font-weight: 900;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  /* ============ تایید ============ */
+  .verified-block {
+    background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px;
+    padding: 16px 20px;
+  }
+  .verified-block .check {
+    width: 24px; height: 24px;
+    background: #111;
+    display: flex; align-items: center; justify-content: center;
+    color: #ffde00; font-size: 14px; font-weight: 900;
+  }
+  .verified-block p {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #111;
+  }
+  .verified-block p b { color: #111; }
+
+  /* ============ واکنش‌گرایی ============ */
+  @media (max-height: 720px) {
+    body { padding: 16px 12px 20px; }
+    .block { margin-bottom: 14px; padding: 18px; box-shadow: 4px 4px 0 #111; }
+    .app-header .icon-frame { width: 68px; height: 68px; }
+    .app-header .title-block h1 { font-size: 26px; }
+    .rating-block { padding: 16px 18px; }
+    .rating-block .stars span { font-size: 22px; }
+    .info-block .cell { padding: 13px 8px; }
+    .info-block .cell .v { font-size: 15px; }
+    .cta-block a { padding: 17px 20px; }
+    .cta-block .cta-text strong { font-size: 17px; }
+    .security-block { padding: 14px 16px; }
+    .security-block p { font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- هدر اپ -->
+    <div class="block app-header">
+      <div class="icon-frame">
+        <img id="appIcon" alt="kardar">
+      </div>
+      <div class="title-block">
+        <h1>kardar</h1>
+        <div class="sub">اپلیکیشن رسمی</div>
+      </div>
+    </div>
+
+    <!-- امتیاز -->
+    <div class="block rating-block">
+      <div class="label">امتیاز کاربران</div>
+      <div class="stars">
+        <span class="on">★</span>
+        <span class="on">★</span>
+        <span class="on">★</span>
+        <span class="on">★</span>
+        <span class="off">★</span>
+      </div>
+    </div>
+
+    <!-- اطلاعات -->
+    <div class="block info-block">
+      <div class="cell">
+        <div class="k">حجم</div>
+        <div class="v">سبک</div>
+      </div>
+      <div class="cell">
+        <div class="k">نسخه</div>
+        <div class="v">1.14.3</div>
+      </div>
+      <div class="cell">
+        <div class="k">پلتفرم</div>
+        <div class="v">Android</div>
+      </div>
+    </div>
+
+    <!-- دکمه دانلود -->
+    <div class="block cta-block">
+      <a href="https://github.com/iran98ir/app.down/releases/download/kardar/app.apk">
+        <div class="cta-text">
+          <strong>دانلود کنید</strong>
+          <span>رایگان · نسخه 1.14.3</span>
+        </div>
+        <span class="cta-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- امنیت -->
+    <div class="block security-block">
+      <div class="shield">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e0f7fa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <p><b>حریم خصوصی محفوظ.</b> این اپ به هیچ بخشی از گوشی شما دسترسی ندارد.</p>
+    </div>
+
+    <!-- تایید -->
+    <div class="block verified-block">
+      <span class="check">✓</span>
+      <p>تایید شده توسط <b>رایان اپ</b></p>
+    </div>
+
+  </div>
+
+  <script>
+    (function(){
+      var candidates = [
+        'icon.png','icon.jpeg','icon.jpg','icon.webp','icon.gif','icon.svg',
+        'logo.png','logo.jpeg','logo.jpg','logo.webp','logo.svg',
+        'app.png','app.jpeg','app.jpg','app-icon.png','app-icon.jpeg',
+        'images.png','images.jpeg','images.jpg','images (2).png','images (2).jpeg',
+        'image.png','image.jpeg','image.jpg'
+      ];
+      var img = document.getElementById('appIcon');
+      var i = 0;
+      img.onerror = function(){
+        i++;
+        if (i < candidates.length) {
+          img.src = candidates[i];
+        } else {
+          img.style.display = 'none';
+        }
+      };
+      img.src = candidates[0];
+    })();
+  </script>
+</body>
+</html>
