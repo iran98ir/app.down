@@ -3,118 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دانلود moshaver.hamrah | رایان سازنده</title>
+<title>دانلود moshaver.hamrah</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    background:#f5f7fb;
     min-height:100vh;
     display:flex; align-items:center; justify-content:center;
-    background: linear-gradient(135deg, #fdfcfb 0%, #e9edf5 100%);
-    padding:24px;
+    padding:20px;
     color:#1a2238;
   }
-  .card {
+  .page {
+    width:100%; max-width:500px;
     background:#ffffff;
-    max-width:460px; width:100%;
-    border-radius:28px;
-    padding:44px 32px 32px;
-    box-shadow: 0 30px 80px -20px rgba(15,32,80,0.25), 0 8px 24px -8px rgba(15,32,80,0.12);
+    border-radius:24px;
+    padding:36px 26px 26px;
+    box-shadow: 0 20px 60px -20px rgba(15,32,80,0.15);
     text-align:center;
-    position:relative;
-    overflow:hidden;
+    animation: rise 0.7s cubic-bezier(.2,.7,.2,1) both;
   }
-  .card::before {
-    content:'';
-    position:absolute; top:0; right:0; left:0; height:6px;
-    background: linear-gradient(90deg, #0b1f4d 0%, #c9a227 100%);
+  @keyframes rise {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
   }
-  .badge {
-    display:inline-flex; align-items:center; gap:6px;
-    background:#f4f6fb; color:#0b1f4d;
-    padding:7px 16px; border-radius:999px;
-    font-size:12.5px; font-weight:700; letter-spacing:0.2px;
-    border:1px solid #e2e7f2;
-    margin-bottom:22px;
+
+  /* ایکون ۳۰٪ بزرگ‌تر */
+  .app-icon {
+    width:156px; height:156px;
+    border-radius:34px;
+    object-fit:cover;
+    margin:0 auto 22px;
+    display:block;
+    box-shadow: 0 18px 45px -14px rgba(15,32,80,0.4);
+    border:1px solid #eef1f6;
+    background:#f5f7fb;
   }
-  .badge .dot { width:7px; height:7px; border-radius:50%; background:#2ecc71; box-shadow:0 0 0 3px rgba(46,204,113,0.18); }
+
   h1 {
-    font-size:26px; font-weight:800; color:#0b1f4d;
-    margin-bottom:8px; letter-spacing:-0.3px;
+    font-size:23px; font-weight:800;
+    color:#0b1f4d; margin-bottom:6px;
+    letter-spacing:-0.3px;
   }
-  .sub {
-    font-size:14px; color:#66738c; margin-bottom:26px; line-height:1.7;
+  .publisher {
+    font-size:12.5px; color:#7c88a0;
+    margin-bottom:20px;
   }
+  .publisher b { color:#0b1f4d; }
+
+  /* امتیاز و آمار */
+  .stats {
+    display:flex; align-items:center; justify-content:center;
+    gap:18px; margin-bottom:22px;
+    padding:14px 0;
+    border-top:1px solid #eef1f6;
+    border-bottom:1px solid #eef1f6;
+  }
+  .stat { text-align:center; flex:1; }
+  .stat strong {
+    display:block; font-size:15px; font-weight:800;
+    color:#0b1f4d; margin-bottom:3px;
+  }
+  .stat span {
+    font-size:10.5px; color:#8b94a8;
+    letter-spacing:0.3px;
+  }
+  .stars { color:#ffb300; font-size:15px; letter-spacing:1px; display:block; margin-bottom:3px; }
+
+  /* جعبه امنیت */
   .security {
-    background: linear-gradient(135deg, #fbfaf5 0%, #f5f1e3 100%);
-    border:1px solid #e8dfc2;
+    background:#f8fafd;
+    border:1px solid #e4ebf5;
     border-radius:16px;
-    padding:18px 18px 16px;
+    padding:16px 16px 14px;
+    margin-bottom:22px;
     text-align:right;
-    margin-bottom:26px;
   }
-  .security .shield {
-    display:flex; align-items:center; gap:8px;
-    font-weight:800; color:#0b1f4d; font-size:14px;
-    margin-bottom:8px;
+  .security .head {
+    display:flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:800;
+    color:#0b1f4d;
+    margin-bottom:7px;
   }
-  .security .shield svg { width:18px; height:18px; }
-  .security p { font-size:12.8px; color:#5a5238; line-height:1.85; }
-  .security b { color:#0b1f4d; }
+  .security .head svg { width:16px; height:16px; flex-shrink:0; }
+  .security p {
+    font-size:12px; line-height:1.9; color:#5a6a85;
+  }
+  .security b { color:#0b1f4d; font-weight:700; }
+
+  /* دکمه سبز کافه‌بازاری */
   .btn {
     display:flex; align-items:center; justify-content:center; gap:10px;
-    width:100%;
-    background: linear-gradient(135deg, #0b1f4d 0%, #16306e 100%);
+    width:100%; padding:16px 20px;
+    background:#00c853;
     color:#ffffff; text-decoration:none;
-    padding:17px 20px; border-radius:16px;
-    font-size:16px; font-weight:800; letter-spacing:0.2px;
-    box-shadow: 0 14px 30px -8px rgba(11,31,77,0.55);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius:14px;
+    font-size:16px; font-weight:800;
+    letter-spacing:0.2px;
+    box-shadow: 0 12px 28px -8px rgba(0,200,83,0.55);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
   }
-  .btn:hover { transform:translateY(-2px); box-shadow: 0 20px 38px -10px rgba(11,31,77,0.6); }
+  .btn:hover { background:#00b34a; transform:translateY(-2px); box-shadow: 0 16px 34px -10px rgba(0,200,83,0.65); }
   .btn:active { transform:translateY(0); }
   .btn svg { width:20px; height:20px; }
-  .meta {
-    margin-top:14px; font-size:11.8px; color:#8b94a8;
-    display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+
+  .version-tag {
+    text-align:center; margin-top:12px;
+    font-size:11.5px; color:#8b94a8;
   }
+  .version-tag b { color:#0b1f4d; }
+
+  /* فوتر تایید */
   .footer {
-    margin-top:28px; padding-top:20px;
+    margin-top:22px; padding-top:18px;
     border-top:1px solid #eef1f6;
-    font-size:12px; color:#9aa3b5; line-height:1.9;
+    font-size:11.5px; color:#8b94a8; line-height:1.9;
   }
-  .footer b { color:#0b1f4d; font-size:12.5px; }
+  .footer .badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#f0fdf4;
+    color:#00843d;
+    border:1px solid #c8f0d4;
+    padding:5px 12px; border-radius:999px;
+    font-size:11.5px; font-weight:700;
+    margin-bottom:8px;
+  }
+  .footer .badge .dot {
+    width:6px; height:6px; border-radius:50%; background:#00c853;
+    box-shadow:0 0 0 3px rgba(0,200,83,0.2);
+  }
+  .footer b { color:#0b1f4d; font-size:12px; }
+
+  @media (max-width:420px) {
+    .page { padding:28px 18px 20px; border-radius:20px; }
+    .app-icon { width:130px; height:130px; border-radius:28px; }
+    h1 { font-size:20px; }
+  }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="badge"><span class="dot"></span> تایید شده توسط رایان سازنده</div>
+  <div class="page">
 
-    <h1>دانلود moshaver.hamrah</h1>
-    <p class="sub">برای استفاده از خدمات، اپلیکیشن را دانلود و نصب کنید. نصب سریع و آسان است.</p>
+    <img src="icon.png" alt="moshaver.hamrah" class="app-icon">
+
+    <h1>moshaver.hamrah</h1>
+    <p class="publisher">ارائه‌شده توسط <b>رایان اپ</b></p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stars">★★★★★</span>
+        <span>امتیاز کاربران</span>
+      </div>
+      <div class="stat">
+        <strong>سبک</strong>
+        <span>حجم</span>
+      </div>
+      <div class="stat">
+        <strong>1.0.0</strong>
+        <span>نسخه</span>
+      </div>
+    </div>
 
     <div class="security">
-      <div class="shield">
+      <div class="head">
         <svg viewBox="0 0 24 24" fill="none" stroke="#0b1f4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         تضمین امنیت و حریم خصوصی
       </div>
-      <p>این اپلیکیشن <b>هیچ‌گونه دسترسی</b> به مخاطبین، گالری، دوربین، موقعیت مکانی یا فایل‌های گوشی شما <b>ندارد</b>. این اپ فقط یک پوسته ساده (WebView) برای نمایش محتوای وب‌سایت ماست و اطلاعات شما کاملاً امن باقی می‌ماند.</p>
+      <p>این اپلیکیشن <b>هیچ‌گونه دسترسی</b> به مخاطبین، گالری، دوربین، موقعیت مکانی یا فایل‌های گوشی شما <b>ندارد</b>. اطلاعات شما کاملاً امن باقی می‌ماند.</p>
     </div>
 
     <a href="https://github.com/iran98ir/app.down/releases/download/moshaver.hamrah/app.apk" class="btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-      دانلود فایل APK
+      دانلود و نصب
     </a>
 
-    <div class="meta">
-      <span>🔒 بدون دسترسی اضافه</span>
-      <span>⚡ نصب سریع</span>
-    </div>
+    <div class="version-tag">آخرین بروزرسانی: <b>نسخه 1.0.0</b></div>
 
     <div class="footer">
-      ساخته شده توسط <b>رایان سازنده</b><br>
-      ارائه‌دهنده راهکارهای نرم‌افزاری برای کسب‌وکارهای کوچک
+      <div class="badge"><span class="dot"></span> تایید شده توسط رایان اپ</div>
+      <br>
+      این اپلیکیشن توسط <b>رایان اپ</b> بررسی و تایید شده است.
     </div>
+
   </div>
 </body>
 </html>
