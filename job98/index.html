@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>job98 — دانلود</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+
+  body {
+    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+    background:#eef1f6;
+    color:#0f172a;
+    min-height:100dvh;
+    padding: 18px 14px 26px;
+    position: relative;
+    overflow-x:hidden;
+    overscroll-behavior-y: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content:'';
+    position:fixed;
+    width:500px; height:500px; border-radius:50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.10), transparent 65%);
+    top:-180px; left:-180px;
+    filter: blur(70px);
+    z-index:0; pointer-events:none;
+  }
+  body::after {
+    content:'';
+    position:fixed;
+    width:420px; height:420px; border-radius:50%;
+    background: radial-gradient(circle, rgba(30,64,175,0.08), transparent 65%);
+    bottom:-160px; right:-160px;
+    filter: blur(70px);
+    z-index:0; pointer-events:none;
+  }
+
+  /* ============ شبکه بنتو ============ */
+  .bento {
+    position:relative; z-index:1;
+    width:100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: min-content;
+    gap: 12px;
+    animation: rise 0.8s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes rise {
+    from { opacity:0; transform: translateY(16px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .tile {
+    background:#ffffff;
+    border:1px solid #e5eaf1;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow:
+      0 6px 20px -8px rgba(15,23,42,0.08),
+      0 2px 4px -2px rgba(15,23,42,0.04);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(.2,.7,.2,1), box-shadow 0.25s;
+  }
+  .tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -10px rgba(15,23,42,0.12);
+  }
+
+  /* ===== بلوک بزرگ هیرو ===== */
+  .tile-hero {
+    grid-column: span 2;
+    padding: 28px 24px 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #f6f9ff 100%);
+    display: flex; align-items: center; gap: 18px;
+  }
+  .tile-hero .hero-icon {
+    flex-shrink: 0;
+    width: 84px; height: 84px;
+    border-radius: 22px;
+    object-fit: cover;
+    border: 1px solid #e5eaf1;
+    background:#f1f5f9;
+    box-shadow:
+      0 10px 24px -8px rgba(15,23,42,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+  .tile-hero .hero-info { flex:1; min-width:0; }
+  .tile-hero .eyebrow {
+    display:inline-block;
+    font-size: 10.5px; font-weight: 800;
+    color:#2563eb;
+    background: rgba(37,99,235,0.09);
+    padding: 3px 9px;
+    border-radius: 999px;
+    letter-spacing: 0.4px;
+    margin-bottom: 8px;
+  }
+  .tile-hero h1 {
+    font-size: 28px; font-weight: 900;
+    color:#0f172a;
+    letter-spacing:-0.6px;
+    line-height: 1.1;
+    margin-bottom: 5px;
+  }
+  .tile-hero .sub {
+    font-size: 12.5px;
+    color:#64748b;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* ===== بلوک امتیاز ===== */
+  .tile-rating {
+    grid-column: span 1;
+    text-align: center;
+    padding: 18px 12px;
+  }
+  .tile-rating .lbl-top {
+    font-size: 10px;
+    color:#94a3b8;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .tile-rating .stars {
+    display: flex; justify-content: center; gap: 1px;
+    font-size: 18px;
+    direction: ltr;
+    color:#e2e8f0;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .tile-rating .stars .on { color:#f59e0b; }
+  .tile-rating .score {
+    font-size: 24px; font-weight: 900;
+    color:#0f172a;
+    letter-spacing: -0.8px;
+    line-height: 1;
+  }
+  .tile-rating .score small {
+    font-size: 12px; color:#94a3b8;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  /* ===== بلوک حجم/نسخه ===== */
+  .tile-meta {
+    grid-column: span 1;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 18px 16px;
+    gap: 12px;
+  }
+  .meta-line {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12.5px;
+  }
+  .meta-line .k {
+    color:#94a3b8; font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+  .meta-line .v {
+    color:#0f172a; font-weight: 800;
+    font-size: 13.5px;
+    letter-spacing: -0.2px;
+  }
+
+  /* ===== بلوک دکمه دانلود ===== */
+  .tile-cta {
+    grid-column: span 2;
+    padding: 0;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    border: none;
+    box-shadow:
+      0 16px 36px -12px rgba(37,99,235,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .tile-cta a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px;
+    text-decoration: none;
+    color: #ffffff;
+    width: 100%;
+  }
+  .tile-cta .cta-text {
+    display: flex; flex-direction: column;
+    text-align: right;
+  }
+  .tile-cta .cta-text strong {
+    font-size: 16px; font-weight: 800;
+    letter-spacing: 0.1px;
+    margin-bottom: 2px;
+  }
+  .tile-cta .cta-text span {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+  }
+  .tile-cta .cta-ic {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .tile-cta .cta-ic svg { width:18px; height:18px; }
+
+  /* ===== بلوک امنیت ===== */
+  .tile-secure {
+    grid-column: span 2;
+    padding: 16px 20px;
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 4px 14px -6px rgba(37,99,235,0.15);
+  }
+  .tile-secure .s-ic {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background:#0ea5e9;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 14px -4px rgba(14,165,233,0.5);
+  }
+  .tile-secure .s-ic svg { width:17px; height:17px; }
+  .tile-secure p {
+    font-size: 12px;
+    color:#075985;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  .tile-secure b { color:#0369a1; font-weight: 800; }
+
+  /* ===== بلوک تایید ===== */
+  .tile-verified {
+    grid-column: span 2;
+    padding: 14px 20px;
+    background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px;
+  }
+  .tile-verified .v-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #10b981;
+    display: flex; align-items: center; justify-content: center;
+    color:#fff; font-size: 10px; font-weight: 900;
+  }
+  .tile-verified p {
+    font-size: 12px;
+    color:#475569;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  .tile-verified b {
+    color:#0f172a;
+    font-weight: 900;
+  }
+
+  @media (max-height: 700px) {
+    body { padding: 12px 10px 20px; }
+    .bento { gap: 10px; }
+    .tile { border-radius: 18px; padding: 16px; }
+    .tile-hero { padding: 22px 18px 20px; gap: 14px; }
+    .tile-hero .hero-icon { width: 70px; height: 70px; border-radius: 18px; }
+    .tile-hero h1 { font-size: 24px; }
+    .tile-rating .stars { font-size: 16px; }
+    .tile-rating .score { font-size: 21px; }
+    .tile-cta a { padding: 17px 20px; }
+    .tile-secure { padding: 13px 16px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="bento">
+
+    <!-- بلوک هیرو -->
+    <div class="tile tile-hero">
+      <img id="appIcon" class="hero-icon" alt="job98">
+      <div class="hero-info">
+        <span class="eyebrow">اپلیکیشن رسمی</span>
+        <h1>job98</h1>
+        <p class="sub">فرصت‌های شغلی و استخدام در یک قدم</p>
+      </div>
+    </div>
+
+    <!-- بلوک امتیاز -->
+    <div class="tile tile-rating">
+      <div class="lbl-top">امتیاز</div>
+      <div class="stars"><span class="on">★★★★</span>★</div>
+      <div class="score">4.0<small>/5</small></div>
+    </div>
+
+    <!-- بلوک حجم و نسخه -->
+    <div class="tile tile-meta">
+      <div class="meta-line">
+        <span class="k">حجم</span>
+        <span class="v">سبک</span>
+      </div>
+      <div class="meta-line">
+        <span class="k">نسخه</span>
+        <span class="v">1.14.3</span>
+      </div>
+    </div>
+
+    <!-- بلوک دکمه دانلود -->
+    <div class="tile tile-cta">
+      <a href="https://github.com/iran98ir/app.down/releases/download/job98/app.apk">
+        <div class="cta-text">
+          <strong>دانلود برای اندروید</strong>
+          <span>نسخه 1.14.3 — آخرین بروزرسانی</span>
+        </div>
+        <span class="cta-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- بلوک امنیت -->
+    <div class="tile tile-secure">
+      <div class="s-ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <p><b>حریم خصوصی محفوظ.</b> این اپ به هیچ‌کدام از بخش‌های گوشی شما دسترسی ندارد.</p>
+    </div>
+
+    <!-- بلوک تایید -->
+    <div class="tile tile-verified">
+      <span class="v-dot">✓</span>
+      <p>تایید شده توسط <b>رایان اپ</b></p>
+    </div>
+
+  </div>
+
+  <script>
+    (function(){
+      var candidates = [
+        'icon.png','icon.jpeg','icon.jpg','icon.webp','icon.gif','icon.svg',
+        'logo.png','logo.jpeg','logo.jpg','logo.webp','logo.svg',
+        'app.png','app.jpeg','app.jpg','app-icon.png','app-icon.jpeg',
+        'images.png','images.jpeg','images.jpg','images (2).png','images (2).jpeg',
+        'image.png','image.jpeg','image.jpg'
+      ];
+      var img = document.getElementById('appIcon');
+      var i = 0;
+      img.onerror = function(){
+        i++;
+        if (i < candidates.length) {
+          img.src = candidates[i];
+        } else {
+          img.style.display = 'none';
+        }
+      };
+      img.src = candidates[0];
+    })();
+  </script>
+</body>
+</html>
