@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mumu — دانلود</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+
+  body {
+    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+    background:#0c0a1f;
+    color:#ffffff;
+    min-height:100dvh;
+    overflow-x:hidden;
+    overscroll-behavior-y: auto;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 100px;
+  }
+
+  /* ============ هیرو تمام‌عرض ============ */
+  .hero-visual {
+    position: relative;
+    width:100%;
+    height: 46vh;
+    min-height: 320px;
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-visual::before {
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(168,85,247,0.55), transparent 55%),
+      radial-gradient(circle at 75% 70%, rgba(236,72,153,0.5), transparent 55%),
+      radial-gradient(circle at 50% 100%, rgba(59,130,246,0.35), transparent 60%),
+      linear-gradient(180deg, #0c0a1f 0%, #1a1035 100%);
+  }
+  .hero-visual::after {
+    content:'';
+    position:absolute; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events:none;
+  }
+
+  /* آیکون شناور وسط هیرو */
+  .hero-icon {
+    position: relative;
+    z-index:2;
+    width: 140px; height: 140px;
+    border-radius: 34px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,0.7),
+      0 0 80px -20px rgba(168,85,247,0.6),
+      inset 0 2px 4px rgba(255,255,255,0.15);
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* ============ محتوای اصلی ============ */
+  .content {
+    position: relative;
+    z-index: 3;
+    max-width: 460px;
+    margin: -40px auto 0;
+    padding: 0 20px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 32px 24px 26px;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.8);
+    text-align:center;
+    animation: rise 0.8s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes rise {
+    from { opacity:0; transform: translateY(24px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-flex; align-items:center; gap:6px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid rgba(168,85,247,0.35);
+    color:#d8b4fe;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .badge .live {
+    width: 6px; height: 6px; border-radius: 50%;
+    background:#a855f7;
+    box-shadow: 0 0 0 3px rgba(168,85,247,0.25);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin-bottom: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tagline {
+    font-size: 14px;
+    color:#9ca3af;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* ردیف آمار افقی */
+  .stats-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 22px;
+  }
+  .stat-mini { text-align:center; }
+  .stat-mini .val {
+    font-size: 16px; font-weight: 800;
+    color:#fff;
+    letter-spacing: -0.3px;
+    margin-bottom: 3px;
+    display: block;
+  }
+  .stat-mini .lbl {
+    font-size: 10px; color:#6b7280;
+    font-weight: 600; letter-spacing: 0.3px;
+  }
+  .stat-mini .stars {
+    display: flex; justify-content:center; gap:1px;
+    font-size: 12px;
+    direction: ltr;
+    color:#3f3f46;
+    margin-bottom: 3px;
+  }
+  .stat-mini .stars .on { color:#fbbf24; }
+
+  /* نوار امنیت */
+  .sec-line {
+    display:flex; align-items:center; gap:9px;
+    padding: 12px 14px;
+    background: rgba(16,185,129,0.06);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align:right;
+  }
+  .sec-line .check-ic {
+    flex-shrink:0;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.4);
+    display:flex; align-items:center; justify-content:center;
+    color: #6ee7b7;
+    font-size: 12px; font-weight: 900;
+  }
+  .sec-line p {
+    font-size: 11.5px;
+    color:#86efac;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .sec-line b { color:#6ee7b7; font-weight: 800; }
+
+  /* دکمه — داخل کارت */
+  .btn-inline {
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    width: 100%;
+    padding: 15px 18px;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    color:#fff;
+    text-decoration:none;
+    border-radius: 14px;
+    font-size: 15px; font-weight: 800;
+    letter-spacing: 0.2px;
+    box-shadow:
+      0 14px 30px -8px rgba(168,85,247,0.55),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: transform 0.18s;
+  }
+  .btn-inline:active { transform: scale(0.98); }
+  .btn-inline svg { width:17px; height:17px; }
+
+  .version {
+    margin-top: 12px;
+    font-size: 11px; color:#6b7280;
+    font-weight: 600;
+  }
+  .version b { color:#c4b5fd; font-weight: 800; }
+
+  /* ============ فوتر ============ */
+  .footer {
+    text-align: center;
+    margin-top: 22px;
+    padding: 16px 0 10px;
+    font-size: 11px;
+    color:#4b5563;
+    font-weight: 600;
+  }
+  .footer .ver-badge {
+    display: inline-flex; align-items: center; gap:6px;
+    color: #a78bfa;
+  }
+  .footer .ver-badge .v-ck {
+    width: 13px; height: 13px; border-radius: 50%;
+    background: #a855f7;
+    color:#fff; font-size: 8px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ============ دکمه شناور پایین صفحه ============ */
+  .fab {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex; align-items:center; justify-content: center;
+    gap: 9px;
+    padding: 15px 32px;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    color:#fff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 15px; font-weight: 800;
+    letter-spacing: 0.2px;
+    box-shadow:
+      0 18px 40px -12px rgba(168,85,247,0.7),
+      0 0 0 1px rgba(255,255,255,0.1) inset;
+    animation: fabIn 0.9s 0.4s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes fabIn {
+    from { opacity:0; transform: translateX(-50%) translateY(30px); }
+    to   { opacity:1; transform: translateX(-50%) translateY(0); }
+  }
+  .fab svg { width: 17px; height: 17px; }
+
+  @media (max-height: 720px) {
+    .hero-visual { height: 38vh; min-height: 240px; }
+    .hero-icon { width: 112px; height: 112px; border-radius: 28px; }
+    .card { padding: 26px 20px 22px; }
+    h1 { font-size: 36px; }
+    .tagline { font-size: 13px; margin-bottom: 18px; }
+    .stats-row { padding: 13px 0; margin-bottom: 18px; }
+    .sec-line { padding: 10px 12px; margin-bottom: 16px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- هیرو تمام‌عرض با آیکون شناور -->
+  <div class="hero-visual">
+    <img id="appIcon" class="hero-icon" alt="mumu">
+  </div>
+
+  <!-- کارت اصلی -->
+  <div class="content">
+    <div class="card">
+
+      <div class="badge">
+        <span class="live"></span>
+        به‌روز و فعال
+      </div>
+
+      <h1>mumu</h1>
+      <p class="tagline">تجربه‌ای متفاوت، سریع و امن — همین حالا شروع کن</p>
+
+      <div class="stats-row">
+        <div class="stat-mini">
+          <div class="stars"><span class="on">★★★★</span>★</div>
+          <span class="lbl">امتیاز</span>
+        </div>
+        <div class="stat-mini">
+          <span class="val">سبک</span>
+          <span class="lbl">حجم</span>
+        </div>
+        <div class="stat-mini">
+          <span class="val">1.14.3</span>
+          <span class="lbl">نسخه</span>
+        </div>
+      </div>
+
+      <div class="sec-line">
+        <div class="check-ic">✓</div>
+        <p><b>حریم خصوصی شما محفوظ است.</b> این اپ به هیچ بخش از گوشی شما دسترسی ندارد.</p>
+      </div>
+
+      <a href="https://github.com/iran98ir/app.down/releases/download/mumu/app.apk" class="btn-inline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        دانلود و نصب
+      </a>
+
+      <div class="version">آخرین نسخه: <b>1.14.3</b></div>
+
+    </div>
+
+    <div class="footer">
+      <div class="ver-badge">
+        <span class="v-ck">✓</span>
+        تایید شده توسط رایان اپ
+      </div>
+    </div>
+  </div>
+
+  <!-- دکمه شناور پایین صفحه -->
+  <a href="https://github.com/iran98ir/app.down/releases/download/mumu/app.apk" class="fab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+    دانلود کنید
+  </a>
+
+  <script>
+    (function(){
+      var candidates = [
+        'icon.png','icon.jpeg','icon.jpg','icon.webp','icon.gif','icon.svg',
+        'logo.png','logo.jpeg','logo.jpg','logo.webp','logo.svg',
+        'app.png','app.jpeg','app.jpg','app-icon.png','app-icon.jpeg',
+        'images.png','images.jpeg','images.jpg','images (2).png','images (2).jpeg',
+        'image.png','image.jpeg','image.jpg'
+      ];
+      var img = document.getElementById('appIcon');
+      var i = 0;
+      img.onerror = function(){
+        i++;
+        if (i < candidates.length) {
+          img.src = candidates[i];
+        } else {
+          img.style.display = 'none';
+        }
+      };
+      img.src = candidates[0];
+    })();
+  </script>
+</body>
+</html>
