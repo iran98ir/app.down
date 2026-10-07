@@ -2,345 +2,562 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>kardar — دانلود</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>کاردار — دانلود اپلیکیشن رسمی</title>
+<meta name="description" content="دانلود مستقیم و امن اپلیکیشن کاردار برای اندروید">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height:100%; }
-
-  body {
-    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #fef6e4;
-    color: #111111;
-    min-height:100dvh;
-    padding: 24px 18px 30px;
-    position: relative;
-    overflow-x:hidden;
-    overscroll-behavior-y: auto;
-    -webkit-font-smoothing: antialiased;
+  :root{
+    --bg: #0a0a0f;
+    --bg-2: #12121a;
+    --surface: rgba(255,255,255,0.045);
+    --surface-2: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.09);
+    --border-2: rgba(255,255,255,0.14);
+    --text: #f5f5f7;
+    --text-dim: #a1a1aa;
+    --text-dimmer: #71717a;
+    --accent: #8b5cf6;
+    --accent-2: #6366f1;
+    --accent-glow: rgba(139,92,246,0.35);
+    --success: #34d399;
   }
 
-  body::before {
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+  html,body{height:100%}
+
+  body{
+    font-family:'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height:100dvh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+    position:relative;
+  }
+
+  /* پس‌زمینه گرادیانی نرم و حرفه‌ای */
+  body::before{
     content:'';
     position:fixed; inset:0;
-    background-image: radial-gradient(#111 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.06;
-    z-index: 0;
-    pointer-events: none;
+    background:
+      radial-gradient(1000px 600px at 80% -10%, rgba(139,92,246,0.18), transparent 60%),
+      radial-gradient(900px 500px at 10% 5%, rgba(99,102,241,0.14), transparent 60%),
+      radial-gradient(700px 500px at 50% 110%, rgba(56,189,248,0.08), transparent 60%);
+    z-index:0;
+    pointer-events:none;
   }
 
-  .container {
-    position:relative; z-index:1;
-    width:100%; max-width: 500px;
+  /* نویز بسیار ملایم برای حس پرمیوم */
+  body::after{
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.025;
+    mix-blend-mode:overlay;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width: 620px;
     margin: 0 auto;
-    animation: pop 0.5s cubic-bezier(.2,.9,.3,1.2) both;
-  }
-  @keyframes pop {
-    from { opacity:0; transform: scale(0.96); }
-    to   { opacity:1; transform: scale(1); }
+    padding: 40px 22px 60px;
   }
 
-  .block {
-    background: #ffffff;
-    border: 3px solid #111111;
-    border-radius: 0;
-    box-shadow: 6px 6px 0 #111111;
-    margin-bottom: 20px;
-    padding: 22px;
+  /* ===== NAV ===== */
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 64px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-weight:800; font-size:15px;
+    letter-spacing:-0.2px;
+  }
+  .brand .dot{
+    width:22px; height:22px; border-radius:7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 24px var(--accent-glow), inset 0 0 0 1px rgba(255,255,255,0.15);
+  }
+  .nav-link{
+    font-size:13px;
+    color: var(--text-dim);
+    text-decoration:none;
+    transition: color .2s ease;
+  }
+  .nav-link:hover{ color: var(--text); }
+
+  /* ===== HERO ===== */
+  .hero{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    margin-bottom: 40px;
   }
 
-  .app-header {
-    display: flex; align-items: center; gap: 18px;
-    background: #ffde00;
+  .app-icon{
+    width:112px; height:112px;
+    border-radius:28px;
+    background: linear-gradient(135deg, #1a1a24, #0f0f16);
+    border:1px solid var(--border-2);
+    padding:0;
+    overflow:hidden;
+    position:relative;
+    box-shadow:
+      0 20px 60px -12px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(255,255,255,0.03),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+    margin-bottom: 26px;
+    animation: floatIn .7s cubic-bezier(.2,.9,.3,1.15) both;
   }
-  .app-header .icon-frame {
-    flex-shrink: 0;
-    width: 84px; height: 84px;
-    border: 3px solid #111111;
-    background: #fff;
-    box-shadow: 4px 4px 0 #111;
-    overflow: hidden;
+  .app-icon img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
   }
-  .app-header .icon-frame img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .app-icon .fallback{
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:44px; font-weight:800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color:#fff;
+    letter-spacing:-2px;
   }
-  .app-header .title-block h1 {
-    font-size: 32px;
-    font-weight: 900;
+
+  .app-name{
+    font-size: 46px;
+    font-weight: 800;
     letter-spacing: -1.5px;
-    line-height: 1;
-    color: #111;
+    line-height: 1.1;
+    background: linear-gradient(180deg, #ffffff 0%, #b8b8c8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    animation: floatIn .7s .05s cubic-bezier(.2,.9,.3,1.15) both;
   }
-  .app-header .title-block .sub {
-    font-size: 13px;
+
+  .app-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 18px;
+    animation: floatIn .7s .1s cubic-bezier(.2,.9,.3,1.15) both;
+  }
+  .app-tag .pulse{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--success);
+    box-shadow: 0 0 0 0 rgba(52,211,153,0.6);
+    animation: pulse 2s infinite;
+  }
+
+  .app-desc{
+    font-size: 15.5px;
+    color: var(--text-dim);
+    max-width: 420px;
+    line-height: 1.8;
+    animation: floatIn .7s .15s cubic-bezier(.2,.9,.3,1.15) both;
+  }
+  .app-desc b{
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ===== CTA ===== */
+  .cta-wrap{
+    margin: 40px 0 22px;
+    animation: floatIn .7s .2s cubic-bezier(.2,.9,.3,1.15) both;
+  }
+
+  .btn-primary{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    width:100%;
+    padding: 20px 24px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    color:#fff;
+    text-decoration:none;
     font-weight: 700;
-    color: #111;
-    margin-top: 6px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:
+      0 10px 40px -8px var(--accent-glow),
+      0 0 0 1px rgba(255,255,255,0.1) inset,
+      0 1px 0 rgba(255,255,255,0.25) inset;
+    transition: transform .2s cubic-bezier(.2,.9,.3,1.15), box-shadow .25s ease;
   }
+  .btn-primary::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 50%);
+    opacity:0;
+    transition: opacity .3s ease;
+  }
+  .btn-primary:hover{
+    transform: translateY(-1px);
+    box-shadow:
+      0 16px 50px -8px var(--accent-glow),
+      0 0 0 1px rgba(255,255,255,0.15) inset,
+      0 1px 0 rgba(255,255,255,0.3) inset;
+  }
+  .btn-primary:hover::before{ opacity:1; }
+  .btn-primary:active{ transform: translateY(0) scale(0.99); }
 
-  .rating-block {
-    background: #ff90e8;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 22px;
+  .btn-primary .txt{
+    display:flex; flex-direction:column; text-align:right;
+    position:relative; z-index:1;
   }
-  .rating-block .label {
-    font-size: 13px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #111;
+  .btn-primary .txt strong{
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing:-0.3px;
+    line-height:1.3;
   }
-  .rating-block .stars {
-    display: flex; gap: 3px;
-    direction: ltr;
+  .btn-primary .txt small{
+    font-size: 12.5px;
+    font-weight: 500;
+    opacity: 0.85;
+    margin-top: 2px;
   }
-  .rating-block .stars span {
-    font-size: 28px;
-    line-height: 1;
-    color: #111;
+  .btn-primary .ic{
+    position:relative; z-index:1;
+    width: 42px; height:42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.18);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
   }
-  .rating-block .stars span.on {
-    color: #111;
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
-  }
-  .rating-block .stars span.off {
-    color: #111;
-    opacity: 0.25;
-  }
+  .btn-primary .ic svg{ width:20px; height:20px; }
 
-  .info-block {
-    display: flex; gap: 0;
-    padding: 0;
-    overflow: hidden;
+  /* ===== META ===== */
+  .meta{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+    animation: floatIn .7s .25s cubic-bezier(.2,.9,.3,1.15) both;
   }
-  .info-block .cell {
-    flex: 1;
-    padding: 16px 10px;
-    text-align: center;
-    border-left: 3px solid #111;
+  .meta-item{
+    padding: 14px 10px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-align:center;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
-  .info-block .cell:last-child { border-left: 0; }
-  .info-block .cell .k {
-    font-size: 10px;
-    font-weight: 900;
+  .meta-item .k{
+    font-size: 10.5px;
+    color: var(--text-dimmer);
+    font-weight: 600;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #111;
-    opacity: 0.55;
     margin-bottom: 5px;
   }
-  .info-block .cell .v {
-    font-size: 18px;
-    font-weight: 900;
-    color: #111;
-    letter-spacing: -0.5px;
-  }
-
-  .cta-block {
-    padding: 0;
-    background: #111111;
-    border: 3px solid #111;
-    box-shadow: 6px 6px 0 #ffde00;
-  }
-  .cta-block a {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 24px;
-    text-decoration: none;
-    color: #ffffff;
-    transition: transform 80ms ease, box-shadow 80ms ease;
-  }
-  .cta-block a:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 4px 4px 0 #ffde00;
-  }
-  .cta-block a:active {
-    transform: translate(6px, 6px);
-    box-shadow: 0 0 0 #ffde00;
-  }
-  .cta-block .cta-text {
-    display: flex; flex-direction: column;
-    text-align: right;
-  }
-  .cta-block .cta-text strong {
-    font-size: 20px; font-weight: 900;
-    letter-spacing: -0.5px;
-    margin-bottom: 2px;
-  }
-  .cta-block .cta-text span {
-    font-size: 11px;
+  .meta-item .v{
+    font-size: 15px;
     font-weight: 700;
-    color: #ffde00;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .cta-block .cta-ic {
-    width: 44px; height: 44px;
-    background: #ffde00;
-    border: 3px solid #fff;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .cta-block .cta-ic svg {
-    width: 20px; height: 20px;
-    stroke: #111;
+    color: var(--text);
+    letter-spacing: -0.3px;
   }
 
-  .security-block {
-    background: #e0f7fa;
-    display: flex; align-items: center; gap: 14px;
-    padding: 18px 20px;
+  /* ===== TRUST ===== */
+  .trust{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    animation: floatIn .7s .3s cubic-bezier(.2,.9,.3,1.15) both;
   }
-  .security-block .shield {
-    flex-shrink: 0;
-    width: 40px; height: 40px;
-    background: #111;
-    border: 3px solid #111;
-    display: flex; align-items: center; justify-content: center;
+  .trust-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: background .2s ease, border-color .2s ease;
   }
-  .security-block .shield svg {
-    width: 18px; height: 18px;
-    stroke: #e0f7fa;
+  .trust-row:hover{
+    background: var(--surface-2);
+    border-color: var(--border-2);
   }
-  .security-block p {
-    font-size: 12.5px;
+  .trust-row .icon{
+    width: 34px; height:34px;
+    flex-shrink:0;
+    border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.2);
+    color: var(--accent);
+  }
+  .trust-row .icon.green{
+    background: rgba(52,211,153,0.1);
+    border-color: rgba(52,211,153,0.2);
+    color: var(--success);
+  }
+  .trust-row .icon.blue{
+    background: rgba(56,189,248,0.1);
+    border-color: rgba(56,189,248,0.2);
+    color: #38bdf8;
+  }
+  .trust-row .icon svg{ width:16px; height:16px; }
+  .trust-row .body{ flex:1; min-width:0; }
+  .trust-row .body .t{
+    font-size: 13.5px;
     font-weight: 700;
-    line-height: 1.6;
-    color: #111;
+    color: var(--text);
+    line-height:1.4;
   }
-  .security-block p b {
-    font-weight: 900;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
+  .trust-row .body .s{
+    font-size: 12px;
+    color: var(--text-dimmer);
+    line-height:1.5;
+    margin-top: 1px;
   }
 
-  .verified-block {
-    background: #ffffff;
-    display: flex; align-items: center; justify-content: center;
-    gap: 10px;
-    padding: 16px 20px;
+  /* ===== FOOTER ===== */
+  .footer{
+    margin-top: 48px;
+    text-align:center;
+    font-size: 12px;
+    color: var(--text-dimmer);
+    line-height:1.8;
+    animation: floatIn .7s .35s cubic-bezier(.2,.9,.3,1.15) both;
   }
-  .verified-block .check {
-    width: 24px; height: 24px;
-    background: #111;
-    display: flex; align-items: center; justify-content: center;
-    color: #ffde00; font-size: 14px; font-weight: 900;
+  .footer .sep{
+    margin: 0 6px;
+    opacity:0.4;
   }
-  .verified-block p {
-    font-size: 13px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #111;
-  }
-  .verified-block p b { color: #111; }
 
-  @media (max-height: 720px) {
-    body { padding: 16px 12px 20px; }
-    .block { margin-bottom: 14px; padding: 18px; box-shadow: 4px 4px 0 #111; }
-    .app-header .icon-frame { width: 68px; height: 68px; }
-    .app-header .title-block h1 { font-size: 26px; }
-    .rating-block { padding: 16px 18px; }
-    .rating-block .stars span { font-size: 22px; }
-    .info-block .cell { padding: 13px 8px; }
-    .info-block .cell .v { font-size: 15px; }
-    .cta-block a { padding: 17px 20px; }
-    .cta-block .cta-text strong { font-size: 17px; }
-    .security-block { padding: 14px 16px; }
-    .security-block p { font-size: 11.5px; }
+  /* ===== ANIMATIONS ===== */
+  @keyframes floatIn{
+    from{ opacity:0; transform: translateY(14px); }
+    to  { opacity:1; transform: translateY(0); }
+  }
+  @keyframes pulse{
+    0%  { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(52,211,153,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 480px){
+    .wrap{ padding: 28px 18px 40px; }
+    .nav{ margin-bottom: 44px; }
+    .app-icon{ width:96px; height:96px; border-radius:24px; }
+    .app-name{ font-size: 38px; }
+    .app-desc{ font-size: 14.5px; }
+    .btn-primary{ padding: 17px 20px; border-radius:16px; }
+    .btn-primary .txt strong{ font-size: 16px; }
+    .btn-primary .ic{ width:38px; height:38px; border-radius:11px; }
+    .meta-item .v{ font-size: 14px; }
+  }
+
+  @media (max-width: 340px){
+    .app-name{ font-size: 32px; }
+    .meta-item{ padding: 12px 6px; }
+    .meta-item .v{ font-size: 13px; }
+  }
+
+  /* احترام به کاهش انیمیشن */
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 </style>
 </head>
 <body>
 
-  <div class="container">
+<div class="wrap">
 
-    <div class="block app-header">
-      <div class="icon-frame">
-        <img id="appIcon" alt="kardar">
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>کاردار</span>
+    </div>
+    <a href="#" class="nav-link">راهنما</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="app-icon" id="iconBox">
+      <img id="appIcon" alt="آیکون کاردار">
+    </div>
+
+    <h1 class="app-name">کاردار</h1>
+
+    <div class="app-tag">
+      <span class="pulse"></span>
+      <span>نسخه ۱.۱۴.۳ — آخرین به‌روزرسانی</span>
+    </div>
+
+    <p class="app-desc">
+      اپلیکیشن رسمی <b>کاردار</b> برای مدیریت هوشمند کارها و وظایف روزانه.
+      سبک، سریع، امن و کاملاً فارسی.
+    </p>
+  </header>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <a class="btn-primary"
+       href="https://rosha-24.ir/app/app-down/kardar-3.07.12-release.apk"
+       download
+       rel="noopener">
+      <div class="txt">
+        <strong>دانلود مستقیم برای اندروید</strong>
+        <small>نسخه ۱.۱۴.۳ · حجم ۸.۴ مگابایت · رایگان</small>
       </div>
-      <div class="title-block">
-        <h1>kardar</h1>
-        <div class="sub">اپلیکیشن رسمی</div>
+      <span class="ic" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4v12"/>
+          <path d="m7 11 5 5 5-5"/>
+          <path d="M5 20h14"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+
+  <!-- META -->
+  <div class="meta">
+    <div class="meta-item">
+      <div class="k">نسخه</div>
+      <div class="v">۱.۱۴.۳</div>
+    </div>
+    <div class="meta-item">
+      <div class="k">حجم</div>
+      <div class="v">۸.۴ مگابایت</div>
+    </div>
+    <div class="meta-item">
+      <div class="k">سازگاری</div>
+      <div class="v">Android 7+</div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="trust">
+
+    <div class="trust-row">
+      <div class="icon green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="t">تأیید شده و امن</div>
+        <div class="s">اسکن شده توسط آنتی‌ویروس · بدون بدافزار</div>
       </div>
     </div>
 
-    <div class="block rating-block">
-      <div class="label">امتیاز کاربران</div>
-      <div class="stars">
-        <span class="on">★</span>
-        <span class="on">★</span>
-        <span class="on">★</span>
-        <span class="on">★</span>
-        <span class="off">★</span>
+    <div class="trust-row">
+      <div class="icon blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="t">حریم خصوصی محفوظ</div>
+        <div class="s">دسترسی غیرضروری به اطلاعات گوشی وجود ندارد</div>
       </div>
     </div>
 
-    <div class="block info-block">
-      <div class="cell">
-        <div class="k">حجم</div>
-        <div class="v">سبک</div>
+    <div class="trust-row">
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
       </div>
-      <div class="cell">
-        <div class="k">نسخه</div>
-        <div class="v">1.14.3</div>
+      <div class="body">
+        <div class="t">دانلود مستقیم، بدون تبلیغ</div>
+        <div class="s">مستقیماً از سرور رسمی کاردار</div>
       </div>
-      <div class="cell">
-        <div class="k">پلتفرم</div>
-        <div class="v">Android</div>
-      </div>
-    </div>
-
-    <div class="block cta-block">
-      <a href="https://rosha-24.ir/app/app-down/kardar-3.07.12-release.apk">
-        <div class="cta-text">
-          <strong>دانلود کنید</strong>
-          <span>رایگان · نسخه 1.14.3</span>
-        </div>
-        <span class="cta-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-        </span>
-      </a>
-    </div>
-
-    <div class="block security-block">
-      <div class="shield">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#e0f7fa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-      </div>
-      <p><b>حریم خصوصی محفوظ.</b> این اپ به هیچ بخشی از گوشی شما دسترسی ندارد.</p>
-    </div>
-
-    <div class="block verified-block">
-      <span class="check">✓</span>
-      <p>تایید شده توسط <b>رایان اپ</b></p>
     </div>
 
   </div>
 
-  <script>
-    (function(){
-      var candidates = [
-        'icon.png','icon.jpeg','icon.jpg','icon.webp','icon.gif','icon.svg',
-        'logo.png','logo.jpeg','logo.jpg','logo.webp','logo.svg',
-        'app.png','app.jpeg','app.jpg','app-icon.png','app-icon.jpeg',
-        'images.png','images.jpeg','images.jpg','images (2).png','images (2).jpeg',
-        'image.png','image.jpeg','image.jpg'
-      ];
-      var img = document.getElementById('appIcon');
-      var i = 0;
-      img.onerror = function(){
-        i++;
-        if (i < candidates.length) {
-          img.src = candidates[i];
-        } else {
-          img.style.display = 'none';
-        }
-      };
-      img.src = candidates[0];
-    })();
-  </script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>© کاردار — تمام حقوق محفوظ است</div>
+    <div>
+      <a href="#" style="color:inherit;text-decoration:none">قوانین</a>
+      <span class="sep">·</span>
+      <a href="#" style="color:inherit;text-decoration:none">حریم خصوصی</a>
+      <span class="sep">·</span>
+      <a href="#" style="color:inherit;text-decoration:none">پشتیبانی</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var candidates = [
+      'icon.png','icon.jpeg','icon.jpg','icon.webp','icon.svg',
+      'logo.png','logo.jpeg','logo.jpg','logo.webp','logo.svg',
+      'app.png','app.jpeg','app.jpg','app-icon.png','app-icon.jpeg',
+      'images.png','images.jpeg','images.jpg','image.png','image.jpeg','image.jpg'
+    ];
+    var img = document.getElementById('appIcon');
+    var box = document.getElementById('iconBox');
+    var i = 0;
+
+    // در صورت نبود تصویر، آیکون گرادیانی با حرف «ک» نمایش داده می‌شود
+    function showFallback(){
+      img.style.display = 'none';
+      if (box.querySelector('.fallback')) return;
+      var fb = document.createElement('div');
+      fb.className = 'fallback';
+      fb.textContent = 'ک';
+      box.appendChild(fb);
+    }
+
+    img.onerror = function(){
+      i++;
+      if (i < candidates.length) {
+        img.src = candidates[i];
+      } else {
+        showFallback();
+      }
+    };
+
+    img.onload = function(){
+      if (box.querySelector('.fallback')) {
+        box.querySelector('.fallback').remove();
+      }
+      img.style.display = 'block';
+    };
+
+    img.src = candidates[0];
+  })();
+</script>
 </body>
 </html>
