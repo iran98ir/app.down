@@ -21,7 +21,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* پس‌زمینه ساده با نقطه‌های تیره */
   body::before {
     content:'';
     position:fixed; inset:0;
@@ -43,7 +42,6 @@
     to   { opacity:1; transform: scale(1); }
   }
 
-  /* ============ بلوک‌های اصلی ============ */
   .block {
     background: #ffffff;
     border: 3px solid #111111;
@@ -53,7 +51,6 @@
     padding: 22px;
   }
 
-  /* ============ هدر اپ ============ */
   .app-header {
     display: flex; align-items: center; gap: 18px;
     background: #ffde00;
@@ -85,7 +82,6 @@
     letter-spacing: 1px;
   }
 
-  /* ============ امتیاز ============ */
   .rating-block {
     background: #ff90e8;
     display: flex; align-items: center; justify-content: space-between;
@@ -116,7 +112,6 @@
     opacity: 0.25;
   }
 
-  /* ============ اطلاعات ============ */
   .info-block {
     display: flex; gap: 0;
     padding: 0;
@@ -145,7 +140,6 @@
     letter-spacing: -0.5px;
   }
 
-  /* ============ دکمه دانلود ============ */
   .cta-block {
     padding: 0;
     background: #111111;
@@ -195,7 +189,6 @@
     stroke: #111;
   }
 
-  /* ============ امنیت ============ */
   .security-block {
     background: #e0f7fa;
     display: flex; align-items: center; gap: 14px;
@@ -224,7 +217,6 @@
     text-decoration-thickness: 2px;
   }
 
-  /* ============ تایید ============ */
   .verified-block {
     background: #ffffff;
     display: flex; align-items: center; justify-content: center;
@@ -246,7 +238,6 @@
   }
   .verified-block p b { color: #111; }
 
-  /* ============ واکنش‌گرایی ============ */
   @media (max-height: 720px) {
     body { padding: 16px 12px 20px; }
     .block { margin-bottom: 14px; padding: 18px; box-shadow: 4px 4px 0 #111; }
@@ -267,7 +258,6 @@
 
   <div class="container">
 
-    <!-- هدر اپ -->
     <div class="block app-header">
       <div class="icon-frame">
         <img id="appIcon" alt="kardar">
@@ -278,7 +268,6 @@
       </div>
     </div>
 
-    <!-- امتیاز -->
     <div class="block rating-block">
       <div class="label">امتیاز کاربران</div>
       <div class="stars">
@@ -290,7 +279,6 @@
       </div>
     </div>
 
-    <!-- اطلاعات -->
     <div class="block info-block">
       <div class="cell">
         <div class="k">حجم</div>
@@ -306,9 +294,8 @@
       </div>
     </div>
 
-    <!-- دکمه دانلود -->
     <div class="block cta-block">
-      <a href="https://github.com/iran98ir/app.down/releases/download/kardar/app.apk">
+      <a href="https://rosha-24.ir/app/app-down/kardar.apk">
         <div class="cta-text">
           <strong>دانلود کنید</strong>
           <span>رایگان · نسخه 1.14.3</span>
@@ -319,7 +306,6 @@
       </a>
     </div>
 
-    <!-- امنیت -->
     <div class="block security-block">
       <div class="shield">
         <svg viewBox="0 0 24 24" fill="none" stroke="#e0f7fa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -327,7 +313,6 @@
       <p><b>حریم خصوصی محفوظ.</b> این اپ به هیچ بخشی از گوشی شما دسترسی ندارد.</p>
     </div>
 
-    <!-- تایید -->
     <div class="block verified-block">
       <span class="check">✓</span>
       <p>تایید شده توسط <b>رایان اپ</b></p>
