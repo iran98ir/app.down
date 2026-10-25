@@ -40,7 +40,6 @@
     position:relative;
   }
 
-  /* پس‌زمینه گرادیانی نرم و حرفه‌ای */
   body::before{
     content:'';
     position:fixed; inset:0;
@@ -52,7 +51,6 @@
     pointer-events:none;
   }
 
-  /* نویز بسیار ملایم برای حس پرمیوم */
   body::after{
     content:'';
     position:fixed; inset:0;
@@ -71,7 +69,6 @@
     padding: 40px 22px 60px;
   }
 
-  /* ===== NAV ===== */
   .nav{
     display:flex;
     align-items:center;
@@ -89,7 +86,6 @@
     box-shadow: 0 0 24px var(--accent-glow), inset 0 0 0 1px rgba(255,255,255,0.15);
   }
 
-  /* ===== نماد مدرن ۴ مربع روی هم (تزئینی) ===== */
   .grid-mark{
     width: 34px;
     height: 34px;
@@ -111,7 +107,6 @@
     opacity: 0.55;
     transition: all .35s cubic-bezier(.2,.9,.3,1.15);
   }
-  /* هر مربع با تأخیر کمی متفاوت برای جلوه بصری */
   .grid-mark span:nth-child(1){ transition-delay: 0s; }
   .grid-mark span:nth-child(2){ transition-delay: .05s; }
   .grid-mark span:nth-child(3){ transition-delay: .1s; }
@@ -127,7 +122,6 @@
     box-shadow: 0 0 12px var(--accent-glow);
   }
 
-  /* ===== HERO ===== */
   .hero{
     display:flex;
     flex-direction:column;
@@ -213,7 +207,6 @@
     font-weight: 600;
   }
 
-  /* ===== CTA ===== */
   .cta-wrap{
     margin: 40px 0 22px;
     animation: floatIn .7s .2s cubic-bezier(.2,.9,.3,1.15) both;
@@ -285,7 +278,6 @@
   }
   .btn-primary .ic svg{ width:20px; height:20px; }
 
-  /* ===== META ===== */
   .meta{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
@@ -317,7 +309,6 @@
     letter-spacing: -0.3px;
   }
 
-  /* ===== TRUST ===== */
   .trust{
     display:flex;
     flex-direction:column;
@@ -374,7 +365,6 @@
     margin-top: 1px;
   }
 
-  /* ===== FOOTER ===== */
   .footer{
     margin-top: 48px;
     text-align:center;
@@ -411,7 +401,6 @@
     opacity:0.4;
   }
 
-  /* ===== ANIMATIONS ===== */
   @keyframes floatIn{
     from{ opacity:0; transform: translateY(14px); }
     to  { opacity:1; transform: translateY(0); }
@@ -422,7 +411,6 @@
     100%{ box-shadow: 0 0 0 0 rgba(52,211,153,0); }
   }
 
-  /* ===== MOBILE ===== */
   @media (max-width: 480px){
     .wrap{ padding: 28px 18px 40px; }
     .nav{ margin-bottom: 44px; }
@@ -451,14 +439,11 @@
 
 <div class="wrap">
 
-  <!-- NAV -->
   <nav class="nav">
     <div class="brand">
       <span class="dot"></span>
       <span>کاردار</span>
     </div>
-
-    <!-- نماد مدرن ۴ مربع (تزئینی، بدون لینک) -->
     <div class="grid-mark" aria-hidden="true">
       <span></span>
       <span></span>
@@ -467,7 +452,6 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="app-icon" id="iconBox">
       <img id="appIcon" alt="آیکون کاردار">
@@ -477,7 +461,7 @@
 
     <div class="app-tag">
       <span class="pulse"></span>
-      <span>نسخه ۱.۱۴.۳ — آخرین به‌روزرسانی</span>
+      <span>نسخه <b id="vTag">۱.۱۴.۳</b> — آخرین به‌روزرسانی</span>
     </div>
 
     <p class="app-desc">
@@ -485,12 +469,8 @@
     </p>
   </header>
 
-  <!-- CTA -->
   <div class="cta-wrap">
-    <a class="btn-primary"
-       href="https://github.com/iran98ir/app.down/releases/download/Kardar/kardar-3.07.11-release.apk"
-       download
-       rel="noopener">
+    <a class="btn-primary" id="dlBtn" href="#" rel="noopener">
       <div class="txt">
         <strong>دانلود مستقیم برای اندروید</strong>
         <small>نسخه ۱.۱۴.۳ · حجم ۸.۴ مگابایت · رایگان</small>
@@ -505,11 +485,10 @@
     </a>
   </div>
 
-  <!-- META -->
   <div class="meta">
     <div class="meta-item">
       <div class="k">نسخه</div>
-      <div class="v">۱.۱۴.۳</div>
+      <div class="v" id="mVer">۱.۱۴.۳</div>
     </div>
     <div class="meta-item">
       <div class="k">حجم</div>
@@ -521,7 +500,6 @@
     </div>
   </div>
 
-  <!-- TRUST -->
   <div class="trust">
 
     <div class="trust-row">
@@ -564,7 +542,6 @@
 
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="copy">© <b>رایان ساز</b> — سازنده اپلیکیشن</div>
     <div class="rights">تمام حقوق محفوظ است</div>
@@ -578,15 +555,16 @@
 </div>
 
 <script>
+  /* ===== آیکون ===== */
   (function(){
+    var img = document.getElementById('appIcon');
+    var box = document.getElementById('iconBox');
     var candidates = [
       'icon.png','icon.jpeg','icon.jpg','icon.webp','icon.svg',
       'logo.png','logo.jpeg','logo.jpg','logo.webp','logo.svg',
       'app.png','app.jpeg','app.jpg','app-icon.png','app-icon.jpeg',
       'images.png','images.jpeg','images.jpg','image.png','image.jpeg','image.jpg'
     ];
-    var img = document.getElementById('appIcon');
-    var box = document.getElementById('iconBox');
     var i = 0;
 
     function showFallback(){
@@ -608,14 +586,32 @@
     };
 
     img.onload = function(){
-      if (box.querySelector('.fallback')) {
-        box.querySelector('.fallback').remove();
-      }
+      var fb = box.querySelector('.fallback');
+      if (fb) fb.remove();
       img.style.display = 'block';
     };
 
     img.src = candidates[0];
   })();
+
+  /* ===== لینک دانلود: فقط یه رشته معمولی، بدون API ===== */
+  (function(){
+    // ⬇️ فقط این دو خط رو عوض کن وقتی نسخه جدید آپلود کردی
+    var FILE_NAME = 'kardar-3.08.0-release.apk';  // ← اسم دقیق فایل APK جدیدت
+    var VERSION   = '۳.۰۸.۰';                     // ← نسخه برای نمایش
+
+    var url = 'https://github.com/iran98ir/app.down/releases/download/Kardar/' + FILE_NAME;
+
+    var btn = document.getElementById('dlBtn');
+    btn.href = url;
+    btn.setAttribute('download', FILE_NAME);
+
+    // آپدیت نمایش نسخه
+    var vTag = document.getElementById('vTag');
+    var mVer = document.getElementById('mVer');
+    if (vTag) vTag.textContent = VERSION;
+    if (mVer) mVer.textContent = VERSION;
+  })();
 </script>
 </body>
-  </html>
+        </html>
